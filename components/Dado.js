@@ -1,4 +1,6 @@
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
+
+const TAMANHO_DADO = 68;
 
 const imagensDados = {
   1: require("../assets/dados/dado1.png"),
@@ -10,19 +12,31 @@ const imagensDados = {
 };
 
 export default function Dado({ valor }) {
+  const imagem = imagensDados[valor];
+
+  if (!imagem) {
+    return <View style={styles.dadoVazio} accessible={false} />;
+  }
+
   return (
     <Image
-      source={imagensDados[valor]}
+      source={imagem}
       style={styles.dado}
-      accessibilityLabel={`Dado mostrando ${valor}`}
       resizeMode="contain"
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={`Dado mostrando o número ${valor}`}
     />
   );
 }
 
 const styles = StyleSheet.create({
   dado: {
-    width: 68,
-    height: 68,
+    width: TAMANHO_DADO,
+    height: TAMANHO_DADO,
+  },
+  dadoVazio: {
+    width: TAMANHO_DADO,
+    height: TAMANHO_DADO,
   },
 });

@@ -4,8 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Dado from "./Dado";
 
 const TOTAL_RODADAS = 5;
+const TOTAL_FACES_DADO = 6;
 
-const rolarDado = () => Math.floor(Math.random() * 6) + 1;
+const rolarDado = () =>
+  Math.floor(Math.random() * TOTAL_FACES_DADO) + 1;
 
 function Botao({ titulo, onPress, disabled, dourado = false }) {
   return (
